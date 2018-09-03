@@ -1,0 +1,29 @@
+<html>
+<head>
+  {% include 'head.html' %}
+</head>
+<body class="">
+    <div class="page">
+      <div class="page-single">
+        <div class="container">
+          <div class="row">
+            <div class="col col-login mx-auto">
+              <div class="text-center mb-6">
+                <img src="{{url_for('static', filename = 'assets/logo.svg')}}" class="h-6" alt="">
+              </div>
+              <form class="card" action="{{url_for('LoginUser')}}" method="post" >
+                <div class="card-body p-6">
+                  <div class="card-title">Login to your account</div>
+              {% set formData=[{'label':'Phone Number', 'required':True, 'placeholder':'Phone Number','type':'number','name':'phone'},{'label':'Password', 'required':True, 'placeholder':'Enter Password','type':'password','name':'password'}] %}
+              {% include 'form.html' %}
+              <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                  </div>
+                    </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+</head>

@@ -1,0 +1,38 @@
+{% extends "security/base.html" %}
+{% from "security/_macros.html" import render_field_with_errors, render_field %}
+{% include 'head.html' %}
+{% block content %}
+{% include "security/_messages.html" %}
+<body class="">
+    <div class="page">
+      <div class="page-single">
+        <div class="container">
+          <div class="row">
+            <div class="col col-login mx-auto">
+              <div class="text-center mb-6">
+                <img src="{{url_for('static', filename = 'assets/logo.svg')}}" class="h-6" alt="">
+              </div>
+              <form class="card" action="{{url_for('LoginUser')}}" method="post" >
+                <div class="card-body p-6">
+                  <div class="card-title"></div>
+<h1>Login to your account</h1>
+  <div class="form-group">
+  {{ render_field_with_errors(login_user_form.phone,class="form-control") }}
+</div>
+  <div class="form-group">
+  {{ render_field_with_errors(login_user_form.password,class="form-control") }}
+</div>
+  <div class="form-group">
+  {{ render_field_with_errors(login_user_form.remember) }}
+  <a href="{{url_for('ForgotPassword')}}" class="float-right small">I forgot password</a>
+</div>
+<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+    </div>
+      </form>
+</div>
+</div>
+</div>
+</div>
+</div>
+{% include "security/_menu.html" %}
+{% endblock %}

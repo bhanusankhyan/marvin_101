@@ -1,0 +1,10 @@
+<div class="col-lg-3 order-lg-1 mb-4 float-left">
+  <div class="card">
+                <!-- Components -->
+                <div class="list-group list-group-transparent mb-0">
+                  {% for item in sidebar_items %}
+                  <a href={{item.link}} class="list-group-item list-group-item-action"><span class="icon mr-3"><i class="fe {{item.class}}"></i></span>{{item.name}}</a>
+                  {% endfor  %}
+                </div>
+              </div>
+              </div>

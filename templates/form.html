@@ -1,0 +1,7 @@
+
+                      {% for item in formData %}
+                      <div class="form-group">
+                        <label class="form-label">{{item.label}} {% if item.required == True%}<span class="form-required">*</span>{% endif %}</label>
+                        <input name = {{item.name}} type={{item.type}} class="form-control" id={{item.name}} aria-describedby={{item.name}} placeholder={{item.placeholder}}>
+                      </div>
+                        {% endfor %}

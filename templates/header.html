@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% include 'head.html' %}
+</head>
+<body>
+      <div class="page-main">
+      <div class="header py-4">
+                <div class="container">
+                  <div class="d-flex">
+                    <a class="header-brand" href="./index.html">
+                      <img src="{{ url_for('static', filename ='assets/logo.svg')}}" class="header-brand-img" alt="tabler logo">
+                    </a>
+                    <div class="d-flex order-lg-2 ml-auto">
+                      <div class="nav-item d-none d-md-flex">
+                        <a href="https://github.com/tabler/tabler" class="btn btn-sm btn-outline-primary" target="_blank">Source code</a>
+                      </div>
+                      <div class="dropdown d-none d-md-flex">
+                        <a class="nav-link icon" data-toggle="dropdown">
+                          <i class="fe fe-bell"></i>
+                          <span class="nav-unread"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          {% for i in range(3) %}
+                          <a href="#" class="dropdown-item d-flex">
+                            <span class="avatar mr-3 align-self-center" style="background-image: url(https://media.graphcms.com//Chdouk9R9CHKm3eY1xh9)"></span>
+                            <div>
+                              <strong>Nathan</strong> pushed new commit: Fix page load performance issue.
+                              <div class="small text-muted">10 minutes ago</div>
+                            </div>
+                          </a>
+                          {% endfor %}
+                          <div class="dropdown-divider"></div>
+                          <a href="#" class="dropdown-item text-center text-muted-dark">Mark all as read</a>
+                        </div>
+                      </div>
+                      <div class="dropdown">
+                        <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                          <span class="avatar" style="background-image: url(https://media.graphcms.com//Chdouk9R9CHKm3eY1xh9)"></span>
+                          <span class="ml-2 d-none d-lg-block">
+                            <span class="text-default">{% if 'phone' in session %} {{session['phone']}} {% else %} Login Please {% endif %}</span>
+                            <small class="text-muted d-block mt-1">Administrator</small>
+                          </span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          {% for item in user_menu_items %}
+                          <a class="dropdown-item" href={{item.link}}>
+                            <i class="dropdown-icon fe {{item.class}}"></i> {{item.name}}
+                          </a>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                    <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                      <span class="header-toggler-icon"></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+                <div class="container">
+                  <div class="row align-items-center">
+                    <div class="col-lg-3 ml-auto">
+                      <form class="input-icon my-3 my-lg-0">
+                        <input type="search" class="form-control header-search" placeholder="Search…" tabindex="1">
+                        <div class="input-icon-addon">
+                          <i class="fe fe-search"></i>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="col-lg order-lg-first">
+                      <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+                        {% for data in navbar_items %}
+                        {% if 'list' in str(type(navbar_items[data])) %}
+                        <li class="nav-item">
+                          <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> {{data}}</a>
+                          <div class="dropdown-menu dropdown-menu-arrow">
+                              {% for range in navbar_items[data] %}
+                              <a href={{range['link']}} class="dropdown-item ">{{range['name']}}</a>
+                              {% endfor %}
+                            </div>
+                            </li>
+                            {% elif 'str' in str(type(navbar_items[data]))%}
+                            <li class="nav-item">
+                              <a href={{navbar_items[data]}} class="nav-link active"><i class="fe fe-box"></i>{{data}}</a>
+                            </li>
+                          {% endif %}
+                          {% endfor  %}
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class = "container">
+              {% block content %}
+              {% endblock %}
+            </div>
+            </div>
+</body>
+</html>
